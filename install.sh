@@ -1,30 +1,27 @@
 #!/bin/bash
 
-# AndroIanseo: Install and configure IANSEO on Termux (Android)
-# Repo: https://github.com/blurenciel/AndroIanseo
+# AndroIanseo Minimal Setup for Termux + PRoot
+# https://github.com/blurenciel/AndroIanseo
 
-echo "Starting AndroIanseo installation..."
-
-# --- Update and Install Packages ---
+echo "📦 Installing proot-distro and dependencies..."
 pkg update && pkg upgrade -y
-pkg install -y apache2 mariadb php php-mysqli php-curl php-gd php-json php-xml php-mbstring php-zip git unzip wget
+pkg install -y proot-distro wget git
 
-# --- MariaDB Init ---
-if [ ! -d "$PREFIX/var/lib/mysql/mysql" ]; then
-  echo "Initializing MariaDB..."
-  mysql_install_db
-fi
+echo "📂 Installing Debian (minimal)..."
+proot-distro install debian
 
-# --- Start Services ---
-echo "Starting Apache and MariaDB..."
-apachectl start
-mysqld_safe --datadir=$PREFIX/var/lib/mysql &
+echo "📝 Creating IANSEO setup script inside Debian..."
 
-# --- Wait for MariaDB to initialize ---
-sleep 10
+cat > $PREFIX/var/lib/proot-distro/installed-rootfs/debian/root/androianseo-setup.sh << 'EOL'
+#!/bin/bash
 
-# --- Create IANSEO Database and User ---
-echo "Configuring MySQL database..."
+echo "📦 Updating and installing packages..."
+apt update && apt upgrade -y
+apt install -y apache2 mariadb-server php php-mysql php-curl php-gd php-json php-xml php-mbstring php-zip wget unzip
+
+echo "⚙️ Setting up MariaDB..."
+service mysql start
+
 DB_NAME="ianseo"
 DB_USER="ianseo_user"
 DB_PASS="ianseo_pass"
@@ -36,23 +33,25 @@ GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
 FLUSH PRIVILEGES;
 EOF
 
-# --- Download and Extract IANSEO ---
-cd $HOME
+echo "🌐 Downloading IANSEO..."
+cd /var/www/html
 wget https://www.ianseo.net/Release/Ianseo_20250210.zip -O ianseo.zip
-unzip -q ianseo.zip -d ianseo
+unzip -q ianseo.zip
+rm ianseo.zip
+chmod -R 755 /var/www/html
 
-echo "Deploying IANSEO to Apache web root..."
-rm -rf $PREFIX/share/apache2/default-site/htdocs/*
-cp -r ianseo/* $PREFIX/share/apache2/default-site/htdocs/
-chmod -R 755 $PREFIX/share/apache2/default-site/htdocs
+echo "🔄 Restarting Apache..."
+service apache2 restart
 
-# --- Restart Apache ---
-apachectl restart
+echo "✅ IANSEO setup complete!"
+echo "➡️ Access it inside Termux browser at http://localhost:8080 (use port forwarding if needed)"
+EOL
 
-# --- Final Message ---
+chmod +x $PREFIX/var/lib/proot-distro/installed-rootfs/debian/root/androianseo-setup.sh
+
+echo "✅ Done. To finish setup, run:"
 echo ""
-echo "✅ AndroIanseo installation complete!"
-echo "📂 Access via: http://127.0.0.1"
-echo "🛠️  MySQL Database: $DB_NAME"
-echo "👤 User: $DB_USER"
-echo "🔑 Password: $DB_PASS"
+echo "    proot-distro login debian"
+echo "    ./androianseo-setup.sh"
+echo ""
+echo "Then access IANSEO at http://localhost:8080 (forward port if needed)."
