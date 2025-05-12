@@ -20,7 +20,8 @@ apt update && apt upgrade -y
 apt install -y apache2 mariadb-server php php-mysql php-curl php-gd php-json php-xml php-mbstring php-zip wget unzip
 
 echo "\u2699\ufe0f Setting up MariaDB..."
-service mysql start
+mysqld_safe --datadir=/var/lib/mysql &
+sleep 10
 
 DB_NAME="ianseo"
 DB_USER="ianseo_user"
@@ -40,8 +41,8 @@ unzip -q ianseo.zip
 rm ianseo.zip
 chmod -R 755 /var/www/html
 
-echo "\ud83d\udd04 Restarting Apache..."
-service apache2 restart
+echo "\ud83d\udd04 Starting Apache manually..."
+/usr/sbin/apache2 -k start
 
 echo "\u2705 IANSEO setup complete!"
 echo "\u27a1\ufe0f Access it inside Termux browser at http://localhost:8080 (use port forwarding if needed)"
@@ -62,4 +63,3 @@ echo "    androianseo"
 echo "    ./androianseo-setup.sh"
 echo ""
 echo "Then open http://localhost:8080 in your Android browser."
-
