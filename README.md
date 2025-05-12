@@ -1,45 +1,23 @@
-# IANSEO Setup for Termux
+# AndroIANSEO
 
-This project provides an easy installation guide and setup for IANSEO (International Archery Score Estimation Online) on Termux, running on Android. It installs Apache, MariaDB, PHP, and all necessary dependencies, along with IANSEO for score calculation.
+Automated Termux setup for [IANSEO](https://github.com/brian-nelson/ianseo) using Debian via `proot-distro`.
 
 ## Features
-- Full installation with all dependencies.
-- Automated setup of Apache, MariaDB, PHP.
-- Ready-to-run IANSEO environment for archery score estimation.
+
+- Installs Debian inside Termux using `proot-distro`
+- Sets up Apache, PHP, and MariaDB
+- Clones the IANSEO timing and scoring software
+
+## Prerequisites
+
+- Termux (latest version from [F-Droid](https://f-droid.org/en/packages/com.termux/))
+- At least 2GB free storage
+- Internet connection
 
 ## Installation
 
-1. **Clone the repository**:
-   First, you must have git installed. If you don't know what it means:
-   ```
-   pkg install git
-   ```
-
-   then run,
-
-   ```
-   git clone https://github.com/blurenciel/androianseo.git
-   ```
-   
-   then  
-
-   ```
-   cd androianseo
-   ```
-
-2. Run the installation script:
-
-   ```
-   chmod +x install_all.sh
-   ```
-
-   next,
-   ```
-   ./install_all.sh
-   ```
-
-3. Access the setup: Once installation is complete, you can access the IANSEO page via your browser at http://localhost:8080.
-
-
-
-This is now ready for use!
+```bash
+git clone https://github.com/yourusername/androianseo
+cd androianseo
+chmod +x install_ianseo_debian.sh
+bash install_ianseo_debian.sh
