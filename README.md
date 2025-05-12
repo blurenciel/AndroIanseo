@@ -11,17 +11,21 @@ This project provides an easy installation guide and setup for IANSEO (Internati
 
 1. **Clone the repository**:
    ```bash
-      git clone https://github.com/yourusername/ianseo-termux.git
-         cd ianseo-termux
+      git clone https://github.com/yourusername/ianseo-termux.git```
 
-         2. Run the installation script:
-
-         chmod +x install_all.sh
-         ./install_all.sh
+   ```bash
+      cd ianseo-termux```
 
 
-         3. Access the setup: Once installation is complete, you can access the IANSEO page via your browser at http://localhost:8080.
+2. Run the installation script:
+
+   ```bash
+      chmod +x install_all.sh
+      ./install_all.sh
+
+
+3. Access the setup: Once installation is complete, you can access the IANSEO page via your browser at http://localhost:8080.
 
 
 
-         This is now ready for use!
+This is now ready for use!
