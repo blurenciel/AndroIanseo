@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # Clone IANSEO (you may need a fork or download link)
-git clone https://github.com/ianseo/ianseo.git
+git clone https://github.com/brian-nelson/ianseo
 mv ianseo $PREFIX/share/apache2/default-site/htdocs/
 
 # Set permissions
