@@ -10,6 +10,13 @@ This project provides an easy installation guide and setup for IANSEO (Internati
 ## Installation
 
 1. **Clone the repository**:
+   First, you must have git installed. If you don't know what it means:
+   ```
+   pkg install git
+   ```
+
+   then run,
+
    ```
    git clone https://github.com/blurenciel/androianseo.git
    ```
