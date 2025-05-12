@@ -17,7 +17,7 @@ Automated Termux setup for [IANSEO](https://github.com/brian-nelson/ianseo) usin
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/androianseo
+git clone https://github.com/blurenciel/AndroIanseo
 cd androianseo
 chmod +x install_ianseo_debian.sh
 bash install_ianseo_debian.sh
