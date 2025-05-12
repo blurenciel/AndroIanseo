@@ -11,24 +11,24 @@ This project provides an easy installation guide and setup for IANSEO (Internati
 
 1. **Clone the repository**:
    ```
-      git clone https://github.com/blurenciel/androianseo.git
+   git clone https://github.com/blurenciel/androianseo.git
    ```
    
    then  
 
    ```
-      cd androianseo
+   cd androianseo
    ```
 
 2. Run the installation script:
 
    ```
-      chmod +x install_all.sh
+   chmod +x install_all.sh
    ```
 
    next,
    ```
-      ./install_all.sh
+   ./install_all.sh
    ```
 
 3. Access the setup: Once installation is complete, you can access the IANSEO page via your browser at http://localhost:8080.
