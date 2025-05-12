@@ -12,6 +12,10 @@ This project provides an easy installation guide and setup for IANSEO (Internati
 1. **Clone the repository**:
    ```bash
       git clone https://github.com/blurenciel/androianseo.git
+   
+then  
+
+   ```bash
       cd ianseo-termux
 
 
