@@ -21,7 +21,7 @@ mysqld_safe --datadir=/data/data/com.termux/files/usr/var/lib/mysql &
 # Clone IANSEO from GitHub
 echo "Cloning IANSEO repository..."
 cd $HOME
-git clone https://github.com/ianseo/ianseo.git
+git clone https://github.com/brian-nelson/ianseo
 cd ianseo
 
 # Configure IANSEO settings (Optional: You can add specific setup here)
